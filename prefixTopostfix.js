@@ -1,4 +1,4 @@
-function prefixtoinfix(expression) {
+function prefixtopostfix(expression) {
     let stack = [];
     let operators = new Set(['+', '-', '*', '/']);
     let tokens = expression.split(' ').reverse();
@@ -7,8 +7,8 @@ function prefixtoinfix(expression) {
         if(operators.has(token)) {
             let operand1 = stack.pop();
             let operand2 = stack.pop();
-            let infixexpressions = `(${operand1} ${token} ${operand2})`;
-            stack.push(infixexpressions);
+            let postfixexpressions = `(${operand1} ${operand2} ${token} )`;
+            stack.push(postfixexpressions);
         } 
         else {
             stack.push(token);
@@ -18,5 +18,5 @@ function prefixtoinfix(expression) {
 }
 
 const prefix = "* + A B - C D"  
-const inprefix = prefixtoinfix(prefix);
+const inprefix = prefixtopostfix(prefix);
 console.log(inprefix);
